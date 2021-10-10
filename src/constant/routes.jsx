@@ -1,4 +1,6 @@
-export const HOME = "/";
-export const SIGN_UP = "/signup";
-export const SIGN_IN = "/signin";
-export const PROFILE = "/profile";
+export const ROUTES = {
+  HOME: "/",
+  SIGN_UP: "/signup",
+  SIGN_IN: "/signin",
+  PROFILE: "/profile",
+};

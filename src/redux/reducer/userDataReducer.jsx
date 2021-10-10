@@ -1,4 +1,5 @@
 import { SIGN_UP } from "../../constant/constant";
+import { USER } from "../actionTypes/actionTypes";
 const intialState = {
   [SIGN_UP.FIRST_NAME]: "",
   [SIGN_UP.LAST_NAME]: "",
@@ -10,7 +11,7 @@ const intialState = {
 
 const userDataReducer = (state = intialState, action) => {
   switch (action.type) {
-    case SIGN_UP:
+    case USER.SIGN_UP:
       return {
         ...state,
         ...action.data,

@@ -3,35 +3,40 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import * as ROUTES from "./constant/routes";
+import { ROUTES } from "./constant/routes";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/auth";
-// import { useAuthListener } from "./hooks/";
 import { Home, SignIn, SignUp, Profile } from "./pages";
+
 export default function App() {
-  // const { user } = useAuthListener();
-  const user = false;
+  let user = JSON.parse(localStorage.getItem("user"));
   return (
     <Provider store={store}>
+
       <Router>
         <IsUserRedirect
-          user={user}
           loggedInPath={ROUTES.HOME}
           path={ROUTES.SIGN_IN}
+          user={user}
         >
           <SignIn />
         </IsUserRedirect>
         <IsUserRedirect
-          user={user}
           loggedInPath={ROUTES.HOME}
           path={ROUTES.SIGN_UP}
+          user={user}
+
         >
           <SignUp />
         </IsUserRedirect>
 
-        <ProtectedRoute user={user} path={ROUTES.HOME} exact>
+        <ProtectedRoute path={ROUTES.HOME}
+          user={user}
+          exact>
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute user={user} path={ROUTES.PROFILE} exact>
+        <ProtectedRoute path={ROUTES.PROFILE}
+          user={user}
+          exact>
           <Profile />
         </ProtectedRoute>
       </Router>

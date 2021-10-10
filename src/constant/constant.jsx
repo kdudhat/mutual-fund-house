@@ -9,4 +9,11 @@ export const SIGN_UP = {
 export const ERROR_MESSAGE = {
   REQUIRED: "Required",
   INVALID: "Invalid",
+  USERNAME_AND_PASSWORD_REQUIRED: "Username and Password are Required.",
+  WRONG_CREDENTIALS: " Wrong Credentials.",
+};
+
+export const SIGN_IN = {
+  LOGGED_IN: "loggedIn",
+  USER: "user",
 };

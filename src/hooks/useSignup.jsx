@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SIGN_UP, ERROR_MESSAGE } from "../constant/constant";
-import { HOME } from "../constant/routes";
+import { ROUTES } from "../constant/routes";
 
 import { useSelector, useDispatch } from "react-redux";
 import { userSignUp } from "../redux/action/userDataAction";
@@ -19,8 +19,6 @@ function useSignup() {
   });
   const dispatch = useDispatch();
 
-  console.log(`data`, data);
-  console.log(`errors`, errors);
   const onChangeDateOfBirth = (newValue) => {
     console.log(`newValue`, newValue);
     if (!newValue) {
@@ -118,16 +116,13 @@ function useSignup() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.currentTarget);
     checkValidation(formData);
 
     if (checkAnyError()) {
       dispatch(userSignUp(data));
-      history.push(HOME);
+      history.push(ROUTES.SIGN_IN);
     }
-
-    // eslint-disable-next-line no-console
   };
   return { onChangeDateOfBirth, onChangeValue, handleSubmit, errors, data };
 }

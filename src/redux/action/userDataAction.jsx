@@ -1,8 +1,8 @@
-import { USER } from "../actionTypes/actionTypes";
+import { USER, AUTH } from "../actionTypes/actionTypes";
 
 export const userSignIn = () => {
   return {
-    type: USER.SIGN_IN,
+    type: AUTH.LOGIN_SUCCESS,
   };
 };
 export const userSignUp = (data) => {
