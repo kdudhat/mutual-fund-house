@@ -8,11 +8,10 @@ import useMutualFundData from "../hooks/useMutualFundData";
 function Home() {
   const {
     mutualFundData,
-    mutualDetailData,
-    setMutualDetailData,
     onClickCard,
     currentData,
-    setCurrentData,
+    selectedCard,
+    onClickFilter,
   } = useMutualFundData();
   return (
     <>
@@ -26,13 +25,13 @@ function Home() {
             <MutualFundListing
               mutualFundData={mutualFundData}
               onClickCard={onClickCard}
+              selectedCard={selectedCard}
             />
           </Grid>
           <Grid item xs={8} spacing={2}>
             <MutualFundDetails
-              mutualDetailData={mutualDetailData}
               currentData={currentData}
-              setCurrentData={setCurrentData}
+              onClickFilter={onClickFilter}
             />
           </Grid>
         </Grid>
