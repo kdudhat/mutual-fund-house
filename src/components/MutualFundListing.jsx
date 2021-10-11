@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-function MutualFundListing({ mutualFundData }) {
+function MutualFundListing({ mutualFundData, onClickCard }) {
   return (
     <>
       {mutualFundData?.map((item) => (
@@ -16,6 +16,7 @@ function MutualFundListing({ mutualFundData }) {
             backgroundColor: "rgb(0 0 0 / 10%)",
             cursor: "pointer",
           }}
+          onClick={() => onClickCard(item)}
         >
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardContent sx={{ flex: "1 0 auto" }}>
@@ -24,8 +25,8 @@ function MutualFundListing({ mutualFundData }) {
               </Typography>
               <Typography
                 variant="subtitle1"
-                color="text.secondary"
                 component="div"
+                style={{ color: "rgb(25 118 210 / 78%)" }}
               >
                 {item?.meta?.fund_house}
               </Typography>
@@ -46,8 +47,8 @@ function MutualFundListing({ mutualFundData }) {
                 ₹{parseFloat(item?.data[0]?.nav).toFixed(4)}
                 <Typography
                   variant="subtitle1"
-                  color="text.secondary"
                   component="div"
+                  style={{ color: "rgb(25 118 210 / 78%)" }}
                 >
                   {moment(item?.data[0]?.date, "DD-MM-YYYY").format(
                     "D MMMM YYYY"
