@@ -24,3 +24,10 @@ export const MUTUAL_FUND = {
 };
 
 export const API = "https://api.mfapi.in/mf/";
+export const FILTER = {
+  ONE_MONTH: "oneMonth",
+  SIX_MONTH: "sixMonth",
+  ONE_YEAR: "oneYear",
+  FIVE_YEAR: "fiveYear",
+  ALL: "all",
+};

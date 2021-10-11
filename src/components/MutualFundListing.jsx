@@ -4,19 +4,20 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-function MutualFundListing({ mutualFundData, onClickCard }) {
+function MutualFundListing({ mutualFundData, onClickCard, selectedCard }) {
   return (
     <>
-      {mutualFundData?.map((item) => (
+      {mutualFundData?.map((item, index) => (
         <Card
           sx={{
             // display: "flex",
             marginBottom: "22px",
             boxShadow: "2px 3px 11px 1px rgb(0 0 0 / 20%)",
-            backgroundColor: "rgb(0 0 0 / 10%)",
+            backgroundColor:
+              selectedCard === index ? "rgb(0 0 0 / 10%)" : "#fff",
             cursor: "pointer",
           }}
-          onClick={() => onClickCard(item)}
+          onClick={() => onClickCard(item, index)}
         >
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardContent sx={{ flex: "1 0 auto" }}>
