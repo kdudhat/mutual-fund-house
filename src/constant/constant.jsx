@@ -17,3 +17,10 @@ export const SIGN_IN = {
   LOGGED_IN: "loggedIn",
   USER: "user",
 };
+export const MUTUAL_FUND = {
+  LOADING: "loading",
+  DATA: "data",
+  ERROR: "error",
+};
+
+export const API = "https://api.mfapi.in/mf/";
