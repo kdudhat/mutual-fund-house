@@ -20,6 +20,7 @@ export const SIGN_IN = {
 export const MUTUAL_FUND = {
   LOADING: "loading",
   DATA: "data",
+  MAIN_DATA: "mainData",
   ERROR: "error",
 };
 

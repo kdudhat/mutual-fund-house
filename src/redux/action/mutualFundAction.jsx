@@ -33,3 +33,10 @@ export const fetchMutualFund = (apiEndPoint) => {
       });
   };
 };
+
+export const filterMutualFund = (data) => {
+  return {
+    type: MUTUAL_FUND_PLAN.FILTER,
+    payload: data,
+  };
+};
