@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ROUTES } from "./constant/routes";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/auth";
 import { Home, SignIn, SignUp, Profile } from "./pages";
+import "./css/global.css"
 
 export default function App() {
 

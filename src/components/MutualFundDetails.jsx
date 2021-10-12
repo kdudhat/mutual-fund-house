@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { FILTER } from "../constant/constant";
-function MutualFundDetails({ currentData, onClickFilter }) {
+function MutualFundDetails({ currentData, onClickFilter, selectedCard }) {
   const data = {
     labels: currentData.date,
     datasets: [
@@ -38,7 +38,23 @@ function MutualFundDetails({ currentData, onClickFilter }) {
   };
   return (
     <div style={{ position: "fixed", width: "63%" }}>
-      {/* <div>{mutualDetailData?.meta?.scheme_name}</div> */}
+      <div
+        style={{
+          fontFamily: "Roboto Helvetica Arial sans-serif",
+          fontWeight: 400,
+          fontSize: "1.6rem",
+          lineHeight: 1.334,
+        }}
+      >
+        {selectedCard.title}
+        <span className="greenPercentage">
+          {" "}
+          {Math.sign(currentData.navPercentage) === -1
+            ? currentData.navPercentage
+            : `+${currentData.navPercentage}`}
+          %
+        </span>
+      </div>
       <Line data={data} options={options} />
       <Stack spacing={2} direction="row" style={{ margin: "20px 40px" }}>
         <Button

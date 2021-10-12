@@ -32,6 +32,7 @@ function Home() {
           </Grid>
           <Grid item xs={8} spacing={2}>
             <MutualFundDetails
+              selectedCard={selectedCard}
               currentData={currentData}
               onClickFilter={onClickFilter}
             />

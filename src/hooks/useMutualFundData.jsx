@@ -6,6 +6,7 @@ import {
 } from "../redux/action/mutualFundAction";
 import { FILTER } from "../constant/constant";
 import moment from "moment";
+import useFindNavPercentage from "./useFindNavPercentage";
 
 function useMutualFundData() {
   const dispatch = useDispatch();
@@ -13,8 +14,9 @@ function useMutualFundData() {
   const [mutualDetailData, setMutualDetailData] = useState({});
   const [currentData, setCurrentData] = useState({});
   const mutualFundData = useSelector((state) => state.mutualFund.data);
-  const [selectedCard, setSelectedCard] = useState(0);
-  const [selectedFilter, setSelectedFilter] = useState(0);
+  const [selectedCard, setSelectedCard] = useState({});
+  const { findNavPercentage } = useFindNavPercentage();
+
   useEffect(() => {
     dispatch(fetchRequestAction());
     apiEndPoints?.map((apiEndPoint) => dispatch(fetchMutualFund(apiEndPoint)));
@@ -22,13 +24,23 @@ function useMutualFundData() {
   useEffect(() => {
     if (mutualFundData.length > 0) {
       const data = extractValue(mutualFundData[0].data);
+
+      const navPercentage = findNavPercentage(data, FILTER.ONE_MONTH);
       setMutualDetailData(data);
       setCurrentData({
         date: data?.[FILTER.ONE_MONTH]?.date,
         nav: data?.[FILTER.ONE_MONTH]?.nav,
         filter: FILTER.ONE_MONTH,
+        navPercentage: navPercentage,
       });
     }
+  }, [mutualFundData]);
+  useEffect(() => {
+    if (mutualFundData)
+      setSelectedCard({
+        index: 0,
+        title: mutualFundData[0]?.meta.scheme_name,
+      });
   }, [mutualFundData]);
   const extractValue = (arr) => {
     let data = {
@@ -96,21 +108,29 @@ function useMutualFundData() {
     return data;
   };
   const onClickCard = (mutualFundData, index) => {
-    setSelectedCard(index);
+    setSelectedCard({ index: index, title: mutualFundData.meta.scheme_name });
     const data = extractValue(mutualFundData.data);
+
+    const navPercentage = findNavPercentage(data, FILTER.ONE_MONTH);
+
     setMutualDetailData(data);
+
     setCurrentData({
       date: data?.[FILTER.ONE_MONTH]?.date,
       nav: data?.[FILTER.ONE_MONTH]?.nav,
       filter: FILTER.ONE_MONTH,
+      navPercentage: navPercentage,
     });
   };
   const onClickFilter = (key) => {
-    setCurrentData({
+    const navPercentage = findNavPercentage(mutualDetailData, key);
+    setCurrentData((prev) => ({
+      ...prev,
       date: mutualDetailData[key]?.date,
       nav: mutualDetailData[key]?.nav,
       filter: key,
-    });
+      navPercentage: navPercentage,
+    }));
   };
   return {
     mutualFundData,
@@ -120,8 +140,6 @@ function useMutualFundData() {
     currentData,
     setCurrentData,
     selectedCard,
-    selectedFilter,
-    setSelectedFilter,
     onClickFilter,
   };
 }
