@@ -4,6 +4,7 @@ import MutualFundDetails from "../components/MutualFundDetails";
 import HeaderContainer from "../containers/header";
 import { Grid } from "@mui/material";
 import useMutualFundData from "../hooks/useMutualFundData";
+import SearchBar from "../components/SearchBar";
 
 function Home() {
   const {
@@ -22,6 +23,7 @@ function Home() {
           spacing={3}
         >
           <Grid item xs={4} spacing={2}>
+            <SearchBar />
             <MutualFundListing
               mutualFundData={mutualFundData}
               onClickCard={onClickCard}

@@ -1,7 +1,12 @@
 import React from "react";
-
+import HeaderContainer from "../containers/header";
+import UserProfile from "../components/UserProfile";
 function Profile() {
-  return <div>profile</div>;
+  return (
+    <HeaderContainer>
+      <UserProfile title="Update User" buttonLabel="Update" />
+    </HeaderContainer>
+  );
 }
 
 export default Profile;

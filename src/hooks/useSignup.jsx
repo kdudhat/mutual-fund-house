@@ -3,12 +3,12 @@ import { SIGN_UP, ERROR_MESSAGE } from "../constant/constant";
 import { ROUTES } from "../constant/routes";
 
 import { useSelector, useDispatch } from "react-redux";
-import { userSignUp } from "../redux/action/userDataAction";
+import { userSignUp, userSignOut } from "../redux/action/userDataAction";
 import { useHistory } from "react-router-dom";
 function useSignup() {
   const history = useHistory();
-
-  const [data, setData] = useState({});
+  const user = useSelector((state) => state.user);
+  const [data, setData] = useState(user);
   const [errors, setErrors] = useState({
     [SIGN_UP.FIRST_NAME]: "",
     [SIGN_UP.LAST_NAME]: "",
@@ -121,6 +121,7 @@ function useSignup() {
 
     if (checkAnyError()) {
       dispatch(userSignUp(data));
+      dispatch(userSignOut());
       history.push(ROUTES.SIGN_IN);
     }
   };

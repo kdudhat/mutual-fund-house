@@ -8,13 +8,12 @@ function useSearchBar() {
     (state) => state.mutualFund[MUTUAL_FUND.MAIN_DATA]
   );
   const onChangeSearchBar = (event) => {
-    const value = event.target.value.toLowerCase() || "";
+    const value = event.target.value.toLowerCase();
     console.log(`value`, value);
     const data = mutualFundMainData.filter(
       (item) =>
         item.meta.fund_house.toLowerCase().search(value) !== -1 ||
-        item.meta.scheme_name.toLowerCase().search(value) !== -1 ||
-        value == ""
+        item.meta.scheme_name.toLowerCase().search(value) !== -1
     );
     console.log(`data`, data);
     dispatch(filterMutualFund(data));
