@@ -10,7 +10,7 @@ import useFindNavPercentage from "./useFindNavPercentage";
 
 function useMutualFundData() {
   const dispatch = useDispatch();
-  const apiEndPoints = [101996, 103341, 101206, 101190, 141305];
+  const apiEndPoints = [106858, 103341, 147888, 148052, 118048];
   const [mutualDetailData, setMutualDetailData] = useState({});
   const [currentData, setCurrentData] = useState({});
   const mutualFundData = useSelector((state) => state.mutualFund.data);
