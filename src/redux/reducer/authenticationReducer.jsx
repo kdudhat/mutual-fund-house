@@ -1,7 +1,6 @@
 import { AUTH } from "../actionTypes/actionTypes";
 import { SIGN_IN } from "../../constant/constant";
 
-let user = JSON.parse(localStorage.getItem("user"));
 const initialState = {};
 
 export default function authenticationReducer(state = initialState, action) {
@@ -9,10 +8,10 @@ export default function authenticationReducer(state = initialState, action) {
     case AUTH.LOGIN_SUCCESS:
       return {
         [SIGN_IN.LOGGED_IN]: true,
-        [SIGN_IN.USER]: user,
+        [SIGN_IN.USER]: action.payload,
       };
     case AUTH.LOGOUT:
-      return { loggedIn: false };
+      return {};
     default:
       return state;
   }

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { SIGN_UP, ERROR_MESSAGE } from "../constant/constant";
 import { useSelector, useDispatch } from "react-redux";
 import { userSignIn } from "../redux/action/userDataAction";
-import { useHistory } from "react-router-dom";
 import { ROUTES } from "../constant/routes";
+import { useHistory } from "react-router-dom";
 
 function useSignIn() {
+  const history = useHistory();
   const [errors, setErrors] = useState("");
   const [signInData, setSignInData] = useState({});
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const userData = useSelector((state) => state.user);
   const checkValidation = () => {
@@ -41,11 +41,12 @@ function useSignIn() {
       setSignInData((prev) => ({ ...prev, [name]: value }));
     }
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    // <Redirect to={ROUTES.HOME} />;
+
     if (checkValidation()) {
-      localStorage.setItem("user", JSON.stringify(signInData));
-      dispatch(userSignIn());
+      await dispatch(userSignIn(signInData));
       history.push(ROUTES.HOME);
     }
   };

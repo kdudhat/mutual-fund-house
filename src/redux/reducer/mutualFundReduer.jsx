@@ -9,8 +9,9 @@ const mutualFundReducer = (state = initialState, action) => {
   switch (action.type) {
     case MUTUAL_FUND_PLAN.FETCH_REQUEST:
       return {
-        ...state,
         [MUTUAL_FUND.LOADING]: true,
+        [MUTUAL_FUND.DATA]: [],
+        [MUTUAL_FUND.ERROR]: "",
       };
     case MUTUAL_FUND_PLAN.FETCH_SUCCESS:
       return {

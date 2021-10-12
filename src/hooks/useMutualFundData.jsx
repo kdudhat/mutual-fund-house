@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchMutualFund } from "../redux/action/mutualFundAction";
+import {
+  fetchMutualFund,
+  fetchRequestAction,
+} from "../redux/action/mutualFundAction";
 import { FILTER } from "../constant/constant";
 import moment from "moment";
 
@@ -13,6 +16,7 @@ function useMutualFundData() {
   const [selectedCard, setSelectedCard] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState(0);
   useEffect(() => {
+    dispatch(fetchRequestAction());
     apiEndPoints?.map((apiEndPoint) => dispatch(fetchMutualFund(apiEndPoint)));
   }, []);
   useEffect(() => {

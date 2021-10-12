@@ -2,16 +2,8 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-const headersData = [
-  {
-    label: "My Account",
-    href: "/account",
-  },
-  {
-    label: "Log Out",
-    href: "/logout",
-  },
-];
+import { ROUTES } from "../constant/routes";
+import useSignOut from "../hooks/useSignOut";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -44,11 +36,23 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function HeaderContainer({ children }) {
-  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+  const { onClickSignOut } = useSignOut();
+  const headersData = [
+    {
+      label: "Home",
+      href: ROUTES.HOME,
+    },
+    {
+      label: "My Account",
+      href: ROUTES.PROFILE,
+    },
 
-  const [state, setState] = useState({
-    drawerOpen: false,
-  });
+    {
+      label: "Sign Out",
+      onClick: onClickSignOut,
+    },
+  ];
+  const { header, logo, menuButton, toolbar } = useStyles();
 
   const displayDesktop = () => {
     return (
@@ -66,16 +70,17 @@ export default function HeaderContainer({ children }) {
   );
 
   const getMenuButtons = () => {
-    return headersData.map(({ label, href }) => {
+    return headersData.map(({ label, href, onClick }) => {
       return (
         <Button
           {...{
             key: label,
             color: "inherit",
-            to: href,
-            component: RouterLink,
+            to: !onClick && href,
+            component: !onClick && RouterLink,
             className: menuButton,
           }}
+          onClick={onClick}
         >
           {label}
         </Button>

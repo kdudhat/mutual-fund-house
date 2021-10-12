@@ -1,7 +1,7 @@
 import { MUTUAL_FUND_PLAN } from "../actionTypes/actionTypes";
 import { API } from "../../constant/constant";
 import axios from "axios";
-const fetchRequestAction = () => {
+export const fetchRequestAction = () => {
   return {
     type: MUTUAL_FUND_PLAN.FETCH_REQUEST,
   };

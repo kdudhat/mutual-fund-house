@@ -1,8 +1,11 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { ROUTES } from "../constant/routes";
+import { useSelector } from "react-redux";
 
-export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
+export function IsUserRedirect({ loggedInPath, children, ...rest }) {
+  const user = useSelector((state) => state.auth.loggedIn);
+
   return (
     <Route
       {...rest}
@@ -27,7 +30,10 @@ export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
   );
 }
 
-export function ProtectedRoute({ user, children, ...rest }) {
+export function ProtectedRoute({ children, ...rest }) {
+  const user = useSelector((state) => state.auth.loggedIn);
+
+  console.log(`user`, user);
   return (
     <Route
       {...rest}
