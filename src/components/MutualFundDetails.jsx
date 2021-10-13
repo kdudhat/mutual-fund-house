@@ -47,13 +47,13 @@ function MutualFundDetails({ currentData, onClickFilter, selectedCard }) {
         }}
       >
         {selectedCard.title}
-        <span className="greenPercentage">
+        <div className="greenPercentage">
           {" "}
           {Math.sign(currentData.navPercentage) === -1
             ? currentData.navPercentage
             : `+${currentData.navPercentage}`}
           %
-        </span>
+        </div>
       </div>
       <Line data={data} options={options} />
       <Stack spacing={2} direction="row" style={{ margin: "20px 40px" }}>
